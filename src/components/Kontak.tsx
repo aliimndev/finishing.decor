@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { FormEvent } from "react";
 import {
   WhatsappLogo,
   Envelope,
@@ -16,17 +17,18 @@ const FIELD =
 const LABEL = "block text-sm font-medium text-ink-2";
 
 export default function Kontak() {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string>("");
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const field = (name: string) => String(data.get(name) ?? "");
     const text = [
-      `Halo ${company.name}, saya ${data.get("nama")}.`,
-      `No HP: ${data.get("hp")}`,
-      `Lokasi proyek: ${data.get("lokasi")}`,
-      `Jenis pekerjaan: ${data.get("jenis")}`,
-      data.get("pesan") ? `Catatan: ${data.get("pesan")}` : "",
+      `Halo ${company.name}, saya ${field("nama")}.`,
+      `No HP: ${field("hp")}`,
+      `Lokasi proyek: ${field("lokasi")}`,
+      `Jenis pekerjaan: ${field("jenis")}`,
+      field("pesan") ? `Catatan: ${field("pesan")}` : "",
     ]
       .filter(Boolean)
       .join("\n");

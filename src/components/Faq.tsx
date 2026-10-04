@@ -8,7 +8,7 @@ import SectionHead from "./SectionHead";
 const EASE = [0.16, 1, 0.3, 1];
 
 export default function Faq() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState<number | null>(0);
   const reduce = useReducedMotion();
 
   return (

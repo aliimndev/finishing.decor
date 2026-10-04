@@ -6,11 +6,12 @@ import {
   Hammer,
   Check,
 } from "@phosphor-icons/react";
+import type { Icon } from "@phosphor-icons/react";
 import { services } from "../data/site";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
-const ICONS = [PaintRoller, SquaresFour, Wall, Ruler, Hammer];
+const ICONS: Icon[] = [PaintRoller, SquaresFour, Wall, Ruler, Hammer];
 
 /*
   Bento 5 sel di grid 6 kolom: 4+2 / 3+3 / 6.

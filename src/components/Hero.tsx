@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import type { MotionProps } from "motion/react";
 import {
   motion,
   useReducedMotion,
@@ -13,7 +14,7 @@ const HERO_IMAGE = "/img/hero.webp";
 
 export default function Hero() {
   const reduce = useReducedMotion();
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
 
   // Satu momen parallax per halaman: teks turun lebih cepat dari foto, jadi
   // Satu momen parallax per halaman: teks turun lebih cepat dari foto, jadi
@@ -26,7 +27,7 @@ export default function Hero() {
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "42%"]);
   const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
 
-  const enter = (delay) =>
+  const enter = (delay: number): MotionProps =>
     reduce
       ? {}
       : {
@@ -102,7 +103,6 @@ export default function Hero() {
               alt="Rumah tinggal dua lantai dengan atap pelana, pagar besi, dan kolam"
               width={1200}
               height={1200}
-              fetchpriority="high"
               className="photo-tone absolute inset-0 h-full w-full object-cover"
             />
           </div>

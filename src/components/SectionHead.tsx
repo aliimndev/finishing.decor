@@ -4,7 +4,19 @@ import Reveal from "./Reveal";
 const EASE = [0.16, 1, 0.3, 1];
 
 /* Dipakai semua section supaya skala dan ritme heading konsisten di satu tempat. */
-export default function SectionHead({ index, title, body, className = "" }) {
+type SectionHeadProps = {
+  index: string;
+  title: string;
+  body?: string;
+  className?: string;
+};
+
+export default function SectionHead({
+  index,
+  title,
+  body,
+  className = "",
+}: SectionHeadProps) {
   const reduce = useReducedMotion();
 
   return (

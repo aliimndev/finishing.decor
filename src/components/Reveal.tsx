@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -7,7 +8,11 @@ const EASE = [0.16, 1, 0.3, 1];
   satu pola untuk semua elemen (RHYTHM 3). Semua property yang dianimasikan
   transform dan opacity saja.
 */
-const FROM = {
+export type RevealFrom = "up" | "left" | "right" | "scale";
+
+type Offset = { opacity: number; x?: number; y?: number; scale?: number };
+
+const FROM: Record<RevealFrom, Offset> = {
   up: { opacity: 0, y: 26 },
   left: { opacity: 0, x: -30 },
   right: { opacity: 0, x: 30 },
@@ -18,12 +23,19 @@ const FROM = {
  * The only scroll-reveal primitive on the page. Every section composes this,
  * so the reduced-motion behavior is defined in exactly one place.
  */
+type RevealProps = {
+  children: ReactNode;
+  delay?: number;
+  from?: RevealFrom;
+  className?: string;
+};
+
 export default function Reveal({
   children,
   delay = 0,
   from = "up",
   className = "",
-}) {
+}: RevealProps) {
   const reduce = useReducedMotion();
 
   return (
