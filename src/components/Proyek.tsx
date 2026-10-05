@@ -1,4 +1,5 @@
 import { projects } from "../data/site";
+import { imgSrc, imgSrcSet } from "../data/img";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
@@ -22,11 +23,14 @@ export default function Proyek() {
           <article className="group mt-14">
             <div className="aspect-[16/9] overflow-hidden sm:-mx-6 lg:-mx-10">
               <img
-                src={lead.image}
+                src={imgSrc(lead.image, 1600)}
+                srcSet={imgSrcSet(lead.image)}
+                sizes="(min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
                 alt={`${lead.title}, ${lead.scope}`}
                 width={1600}
                 height={900}
                 loading="lazy"
+                decoding="async"
                 className="photo-tone h-full w-full object-cover transition-[filter] duration-500 group-hover:photo-tone-hover"
               />
             </div>
@@ -52,11 +56,14 @@ export default function Proyek() {
               <article className="group">
                 <div className={`overflow-hidden ${project.aspect}`}>
                   <img
-                    src={project.image}
+                    src={imgSrc(project.image, 900)}
+                    srcSet={imgSrcSet(project.image)}
+                    sizes="(min-width: 768px) 46vw, 92vw"
                     alt={`${project.title}, ${project.scope}`}
                     width={900}
-                    height={1100}
+                    height={1125}
                     loading="lazy"
+                    decoding="async"
                     className="photo-tone h-full w-full object-cover transition-[filter] duration-500 group-hover:photo-tone-hover"
                   />
                 </div>

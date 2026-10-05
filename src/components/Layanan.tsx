@@ -8,6 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 import { services } from "../data/site";
+import { imgSrc, imgSrcSet } from "../data/img";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
@@ -55,11 +56,14 @@ export default function Layanan() {
                   {service.image && (
                     <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
                       <img
-                        src={service.image}
+                        src={imgSrc(service.image, 900)}
+                        srcSet={imgSrcSet(service.image)}
+                        sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 100vw"
                         alt={service.title}
                         width={900}
-                        height={700}
+                        height={675}
                         loading="lazy"
+                        decoding="async"
                         className="photo-tone absolute inset-0 h-full w-full object-cover transition-[filter] duration-500 group-hover:photo-tone-hover"
                       />
                     </div>

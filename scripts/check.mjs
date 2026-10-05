@@ -11,8 +11,11 @@ const check = (ok, label) => {
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 
+// Warning diperlakukan sama dengan error: warning dari motion atau React
+// berarti ada yang salah di kode, bukan catatan kosmetik.
 const errors = [];
-page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+const isNoise = (m) => m.type() === "error" || m.type() === "warning";
+page.on("console", (m) => isNoise(m) && errors.push(m.text()));
 page.on("pageerror", (e) => errors.push(String(e)));
 
 // Scroll the whole page once so every whileInView reveal has fired before
@@ -46,7 +49,7 @@ const text = await page.locator("body").innerText();
 
 check(
   errors.length === 0,
-  `zero console errors${errors.length ? `: ${errors[0]}` : ""}`,
+  `zero console errors or warnings${errors.length ? `: ${errors[0]}` : ""}`,
 );
 check(!/[—–]/.test(text), "no em-dash or en-dash in visible text");
 
@@ -59,6 +62,27 @@ check(
 
 const bare = await page.locator("img:not([width]):not([height])").count();
 check(bare === 0, "every <img> has width and height");
+
+// Semua foto proyek harus lewat srcSet supaya mobile tidak menarik lebar
+// 1600 hanya untuk kartu 390px. src tanpa pasangan srcSet = regresi.
+const noSrcSet = await page
+  .locator('img[src*="/img/"]:not([srcset])')
+  .evaluateAll((els) => els.map((e) => e.getAttribute("src")));
+check(
+  noSrcSet.length === 0,
+  `every /img <img> has srcSet${noSrcSet.length ? `: ${noSrcSet[0]}` : ""}`,
+);
+
+// Broken = request sudah selesai tapi tidak menghasilkan piksel. Gambar
+// loading="lazy" yang belum masuk viewport belum selesai, jadi bukan failure.
+const broken = await page
+  .locator("img")
+  .evaluateAll((els) =>
+    els
+      .filter((e) => e.complete && e.currentSrc !== "" && e.naturalWidth === 0)
+      .map((e) => e.currentSrc),
+  );
+check(broken.length === 0, `no broken images${broken.length ? `: ${broken[0]}` : ""}`);
 
 const hscreen = await page.locator(".h-screen").count();
 check(hscreen === 0, "no h-screen (uses min-h-[100dvh])");

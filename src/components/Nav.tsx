@@ -2,29 +2,22 @@ import { useState } from "react";
 import {
   AnimatePresence,
   motion,
-  useMotionValueEvent,
   useReducedMotion,
-  useScroll,
 } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { company, nav, cta } from "../data/site";
+import { imgSrc, imgSrcSet } from "../data/img";
 
 const EASE = [0.32, 0.72, 0, 1];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  // changed hanya diemulasikan saat nilai melewati ambang, jadi nav tidak
-  // re-render pada setiap event scroll.
-  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-line bg-paper">
       <div
-        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-4 transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] sm:px-6 lg:px-10 ${scrolled ? "h-14 md:h-16" : "h-16 md:h-[72px]"}`}
+        className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-6 lg:h-[72px] lg:px-10"
       >
         <a
           href="#atas"
@@ -32,10 +25,12 @@ export default function Nav() {
           aria-label={`${company.name}, ke atas`}
         >
           <img
-            src={company.logo}
+            src={imgSrc(company.logo, 900)}
+            srcSet={imgSrcSet(company.logo)}
+            sizes="160px"
             alt={company.logoText}
-            width={1067}
-            height={269}
+            width={267}
+            height={67}
             className="h-8 w-auto sm:h-10"
           />
         </a>

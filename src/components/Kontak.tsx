@@ -33,12 +33,19 @@ export default function Kontak() {
       .filter(Boolean)
       .join("\n");
 
+    // Tidak ada server di belakang form ini: offer-nya dikirim sebagai chat
+    // WhatsApp. Karena window.open dengan noopener selalu mengembalikan null,
+    // pop-up terblokir tidak bisa dideteksi dari sini, jadi satu pesan
+    // menutup kedua kemungkinan sekaligus.
     window.open(
       `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`,
       "_blank",
       "noopener,noreferrer",
     );
-    setStatus("Jendela WhatsApp terbuka. Lanjutkan percakapan di sana.");
+
+    setStatus(
+      `Jendela WhatsApp terbuka, tekan kirim di sana. Kalau tidak terbuka, hubungi ${company.phone}.`,
+    );
   }
 
   return (

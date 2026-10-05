@@ -1,0 +1,47 @@
+name: preflight
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium for the preflight
+        run: npx playwright install --with-deps chromium
+
+      - run: npm run typecheck
+
+      - run: npm run build
+
+      - name: Start the preview server
+        run: nohup npm run preview -- --port 4173 > /tmp/preview.log 2>&1 &
+
+      - name: Wait for the preview server
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          echo "preview server did not come up:" && cat /tmp/preview.log && exit 1
+
+      - run: node scripts/check.mjs http://localhost:4173/
+
+      - name: Keep the screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preflight-screenshots
+          path: screenshot-*.png
+          if-no-files-found: ignore

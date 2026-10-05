@@ -8,15 +8,15 @@ import {
 } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { cta, company } from "../data/site";
+import { imgSrc, imgSrcSet } from "../data/img";
 
 const EASE = [0.16, 1, 0.3, 1];
-const HERO_IMAGE = "/img/hero.webp";
+const HERO_IMAGE = "/img/hero";
 
 export default function Hero() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
 
-  // Satu momen parallax per halaman: teks turun lebih cepat dari foto, jadi
   // Satu momen parallax per halaman: teks turun lebih cepat dari foto, jadi
   // kedua kolom terbaca punya kedalaman tanpa mengubah layout.
   const { scrollYProgress } = useScroll({
@@ -99,10 +99,13 @@ export default function Hero() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <img
-              src={HERO_IMAGE}
+              src={imgSrc(HERO_IMAGE, 900)}
+              srcSet={imgSrcSet(HERO_IMAGE)}
+              sizes="(min-width: 1024px) 40vw, 92vw"
               alt="Rumah tinggal dua lantai dengan atap pelana, pagar besi, dan kolam"
-              width={1200}
-              height={1200}
+              width={900}
+              height={1125}
+              decoding="async"
               className="photo-tone absolute inset-0 h-full w-full object-cover"
             />
           </div>

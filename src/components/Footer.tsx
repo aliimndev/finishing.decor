@@ -1,4 +1,5 @@
 import { company, nav, cta } from "../data/site";
+import { imgSrc, imgSrcSet } from "../data/img";
 
 export default function Footer() {
   return (
@@ -7,10 +8,12 @@ export default function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-[34ch]">
             <img
-              src={company.logo}
+              src={imgSrc(company.logo, 900)}
+              srcSet={imgSrcSet(company.logo)}
+              sizes="200px"
               alt={company.logoText}
-              width={1067}
-              height={269}
+              width={267}
+              height={67}
               className="h-10 w-auto"
             />
             <p className="mt-4 text-sm leading-relaxed text-ink-3">

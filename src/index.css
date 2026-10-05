@@ -32,6 +32,11 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Motion mengukur scroll offset dengan berjalan ke atas lewat
+       offsetParent, dan memwarn kalau scroll container-nya position:
+       static. position: relative aman di sini: containing block untuk
+       position: fixed tetap viewport, jadi navbar fixed tidak terganggu. */
+    position: relative;
   }
 
   body {
