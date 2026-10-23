@@ -1,119 +1,61 @@
-import {
-  PaintRoller,
-  SquaresFour,
-  Wall,
-  Ruler,
-  Hammer,
-  Check,
-} from "@phosphor-icons/react";
-import type { Icon } from "@phosphor-icons/react";
 import { services } from "../data/site";
 import { imgSrc, imgSrcSet } from "../data/img";
-import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
-
-const ICONS: Icon[] = [PaintRoller, SquaresFour, Wall, Ruler, Hammer];
-
-/*
-  Bento 5 sel di grid 6 kolom: 4+2 / 3+3 / 6.
-  Gapless: hairline 1px muncul dari background grid, bukan border per sel.
-  Sel 0 sampai 3 punya foto, sel 4 teks saja dan satu-satunya sel signal.
-*/
-const SPANS = [
-  "md:col-span-4",
-  "md:col-span-2",
-  "md:col-span-3",
-  "md:col-span-3",
-  "md:col-span-6",
-];
 
 export default function Layanan() {
   return (
-    <section id="layanan" className="py-24 md:py-32">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <SectionHead
-          index="01 / Layanan"
-          title="Lima lini pekerjaan yang dikerjakan tim kami sendiri."
-        />
+    <section id="layanan" className="section">
+      <div className="wrap">
+        <SectionHead title="Lima lini pekerjaan yang dikerjakan tim kami sendiri." />
 
-        <div className="mt-14 grid grid-cols-1 gap-px bg-line md:grid-cols-6">
+        <ol className="mt-12 border-t border-rule">
           {services.map((service, i) => {
-            const Icon = ICONS[i];
-            const isSignal = i === 4;
-            const tone = isSignal ? "text-paper" : "text-ink";
-            const bodyTone = isSignal ? "text-paper" : "text-ink-2";
-            const lineTone = isSignal ? "border-paper/40" : "border-line";
+            const hasImage = Boolean(service.image);
 
             return (
-              <Reveal
+              <li
                 key={service.title}
-                delay={(i % 2) * 0.06}
-                className={`h-full ${SPANS[i]}`}
+                className="grid grid-cols-12 items-start gap-x-8 gap-y-4 border-b border-rule py-8"
               >
-                <article
-                  className={`group flex h-full flex-col ${isSignal ? "bg-signal" : "bg-paper"}`}
+                <span className="figure col-span-2 pt-1 text-accent lg:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <h3 className="col-span-10 lg:col-span-3">{service.title}</h3>
+
+                <p
+                  className={`col-span-12 text-ink-2 lg:col-span-3 ${
+                    hasImage ? "" : "lg:col-span-5"
+                  }`}
                 >
-                  {service.image && (
-                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
-                      <img
-                        src={imgSrc(service.image, 900)}
-                        srcSet={imgSrcSet(service.image)}
-                        sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 100vw"
-                        alt={service.title}
-                        width={900}
-                        height={675}
-                        loading="lazy"
-                        decoding="async"
-                        className="photo-tone absolute inset-0 h-full w-full object-cover transition-[filter] duration-500 group-hover:photo-tone-hover"
-                      />
-                    </div>
-                  )}
+                  {service.body}
+                </p>
 
-                  <div className="flex flex-1 flex-col p-8 md:p-10">
-                    <div className="flex items-center gap-3">
-                      <Icon
-                        size={20}
-                        weight="light"
-                        className={`shrink-0 ${isSignal ? "text-paper" : "text-signal"}`}
-                        aria-hidden="true"
-                      />
-                      <h3
-                        className={`text-lg font-semibold tracking-tight ${tone}`}
-                      >
-                        {service.title}
-                      </h3>
-                    </div>
+                <ul className="col-span-12 space-y-1 text-sm text-ink-2 lg:col-span-2">
+                  {service.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
 
-                    <p
-                      className={`mt-4 max-w-[40ch] leading-relaxed ${bodyTone}`}
-                    >
-                      {service.body}
-                    </p>
-
-                    <ul
-                      className={`mt-auto space-y-2 border-t pt-6 ${lineTone}`}
-                    >
-                      {service.items.map((item) => (
-                        <li
-                          key={item}
-                          className={`flex items-center gap-2 text-sm ${tone}`}
-                        >
-                          <Check
-                            size={14}
-                            weight="bold"
-                            className="shrink-0"
-                            aria-hidden="true"
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                {hasImage && (
+                  <div className="col-span-12 lg:col-span-3">
+                    <img
+                      src={imgSrc(service.image, 900)}
+                      srcSet={imgSrcSet(service.image)}
+                      sizes="(min-width: 1024px) 24vw, 100vw"
+                      alt=""
+                      width={900}
+                      height={675}
+                      loading="lazy"
+                      decoding="async"
+                      className="photo-tone aspect-[16/9] w-full object-cover lg:aspect-[4/3]"
+                    />
                   </div>
-                </article>
-              </Reveal>
+                )}
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
     </section>
   );

@@ -1,81 +1,12 @@
+/* Hallmark · shape: Photographic · genre: editorial · theme: brand · redesign: full
+ * paper: oklch(97.2% 0.012 76) · accent: oklch(52% 0.155 52) · display: Archivo · body: Archivo · hero: Poster · nav: utility masthead · footer: ink mast · signature: the job photo behind an ink docket
+ * axes: light/grotesk-sans/warm · posture: Restrained · contrast: pass · fold: pass · v2.0.0
+ */
+/* Hallmark · dropped hero-900.webp · the supplied hero carries a visible watermark; img1 keeps the poster clean */
+/* Hallmark · dropped "Pagar dan Tangga" · it remains a project row; only the active project renders as h3 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: R, cut the parallax, the reveal layer and the photo hover; one accent marks rules and active work only */
 @import "tailwindcss";
-
 @import "@fontsource-variable/archivo";
 @import "@fontsource-variable/jetbrains-mono";
-
-/*
-  Studio system. Referensi: Norm Architects, Kinfolk, Cereal, A24, MUJI.
-  Shape lock: radius 0 di seluruh halaman. Hanya titik status yang bulat.
-  Surface lock: hairline 1px sebagai pemisah, tanpa shadow, tanpa gradient.
-  Accent lock: --color-signal satu-satunya warna jenuh, hanya untuk mark kecil.
-  CTA lock: tombol aksi warna --color-ink, bukan warna accent.
-  Theme lock: kertas putih hangat -> putih. Tidak ada section yang membalik gelap.
-*/
-@theme {
-  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
-
-  --color-paper: #ffffff;
-  --color-paper-2: #faf9f7;
-  --color-ink: #14140f;
-  --color-ink-2: #45453f;
-  --color-ink-3: #64645d;
-  --color-line: #e4e2dc;
-  --color-signal: #b45309;
-}
-
-@layer base {
-  :root {
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    /* Motion mengukur scroll offset dengan berjalan ke atas lewat
-       offsetParent, dan memwarn kalau scroll container-nya position:
-       static. position: relative aman di sini: containing block untuk
-       position: fixed tetap viewport, jadi navbar fixed tidak terganggu. */
-    position: relative;
-  }
-
-  body {
-    background-color: #ffffff;
-    color: #14140f;
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Keep anchors clear of the fixed nav without magic offsets per call site. */
-  :target {
-    scroll-margin-top: 6rem;
-  }
-
-  ::selection {
-    background-color: #b45309;
-    color: #ffffff;
-  }
-
-  :focus-visible {
-    outline: 2px solid #b45309;
-    outline-offset: 2px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-}
-
-/*
-  Foto disamakan ke gaya studio: sedikit desaturasi dan lift brightness,
-  supaya foto stok tidak terlihat murahan di atas kertas putih.
-*/
-@utility photo-tone {
-  filter: saturate(0.82) contrast(0.94) brightness(1.1);
-}
-
-@utility photo-tone-hover {
-  filter: saturate(0.95) contrast(1) brightness(1.02);
-}
+@import "./tokens.css";
+@import "./base.css" layer(base);

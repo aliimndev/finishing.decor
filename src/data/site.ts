@@ -64,7 +64,7 @@ export const services = [
 export const process = [
   {
     title: "Survei",
-    body: "Kami datang ke lokasi, ukur ulang kondisi, dan catat material yang sudah terpasang.",
+    body: "Kami ukur ulang lokasi dan catat material yang sudah terpasang.",
   },
   {
     title: "Preparasi",
@@ -72,7 +72,7 @@ export const process = [
   },
   {
     title: "Pengerjaan",
-    body: "Pengecatan, pemasangan keramik, dan rangka plafon dikerjakan sesuai urutan yang benar.",
+    body: "Pengecatan, keramik, dan rangka plafon dikerjakan sesuai urutan.",
   },
   {
     title: "Serah Terima",

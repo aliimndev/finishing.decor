@@ -28,16 +28,19 @@ const sweep = () =>
     for (let pass = 0; pass < 40; pass++) {
       const step = window.innerHeight * 0.6;
       for (let y = 0; y <= document.documentElement.scrollHeight; y += step) {
-        window.scrollTo(0, y);
+        window.scrollTo({ top: y, behavior: "instant" });
         await new Promise((r) => setTimeout(r, 100));
       }
-      window.scrollTo(0, document.documentElement.scrollHeight);
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "instant",
+      });
       await new Promise((r) => setTimeout(r, 300));
       const now = Math.round(document.documentElement.scrollHeight);
       if (now === last) break;
       last = now;
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
 
 await page.goto(url, { waitUntil: "networkidle" });
@@ -154,7 +157,9 @@ const overflow = await page.evaluate(
 check(!overflow, "no horizontal overflow at 1440px");
 
 await page.setViewportSize({ width: 1440, height: 900 });
-await page.evaluate(() => window.scrollTo(0, 0));
+await page.evaluate(() =>
+  window.scrollTo({ top: 0, behavior: "instant" }),
+);
 await page.waitForTimeout(400);
 // Viewport-sized shot first: fullPage renders position:fixed at the wrong
 // offset, so the sticky nav is only trustworthy in this one.

@@ -1,43 +1,29 @@
 import { process } from "../data/site";
-import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
-/*
-  Empat langkah jadi strip horizontal 4 kolom, dipisah hairline dari
-  background grid. Lebih sederhana dari garis waktu vertikal dan tidak
-  meninggalkan ruang kosong di kanan bawah.
-*/
 export default function Proses() {
   return (
-    <section
-      id="proses"
-      className="border-y border-line bg-paper-2 py-24 md:py-32"
-    >
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+    <section id="proses" className="section border-y border-rule bg-paper-2">
+      <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-x-12">
         <SectionHead
-          index="03 / Proses"
+          className="lg:col-span-5"
           title="Empat langkah, dari survei sampai serah terima."
-          body="Tidak ada tahap yang dilewati. Setiap kali selesai satu tahap, kami kirim foto dan perkiraan waktu tahap berikutnya."
+          body="Tidak ada tahap yang dilewati. Tiap tahap selesai, kami kirim foto dan perkiraan waktu berikutnya."
         />
 
-        <ol className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="border-t border-rule lg:col-span-7 lg:col-start-6">
           {process.map((step, i) => (
-            <li key={step.title} className="bg-paper">
-              <Reveal
-                from="left"
-                delay={i * 0.08}
-                className="flex h-full flex-col p-8 md:p-9"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-signal">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-6 text-lg font-semibold tracking-tight text-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-3 max-w-[34ch] leading-relaxed text-ink-2">
-                  {step.body}
-                </p>
-              </Reveal>
+            <li
+              key={step.title}
+              className="grid grid-cols-12 gap-x-4 gap-y-2 border-b border-rule py-6"
+            >
+              <span className="figure col-span-2 pt-1 text-accent lg:col-span-1">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="col-span-10 lg:col-span-3">{step.title}</h3>
+              <p className="col-span-12 text-ink-2 lg:col-span-8 lg:col-start-5">
+                {step.body}
+              </p>
             </li>
           ))}
         </ol>
