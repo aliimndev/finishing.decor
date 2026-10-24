@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { List, X } from "@phosphor-icons/react";
+import { List, X, WhatsappLogo, InstagramLogo } from "@phosphor-icons/react";
 import { company, nav, cta } from "../data/site";
 import { imgSrc, imgSrcSet } from "../data/img";
 
@@ -10,12 +10,26 @@ export default function Nav() {
     <header className="border-b border-rule bg-paper">
       <div className="hidden border-b border-rule sm:block">
         <div className="wrap flex h-9 items-center justify-between text-sm text-ink-2">
-          <a
-            href={`tel:${company.phone.replace(/\s/g, "")}`}
-            className="whitespace-nowrap hover:text-ink"
-          >
-            {company.phone}
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={`https://wa.me/${company.whatsapp}`}
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-2 hover:text-ink"
+            >
+              <WhatsappLogo size={20} />
+            </a>
+            <a
+              href={company.instagram}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-2 hover:text-ink"
+            >
+              <InstagramLogo size={20} />
+            </a>
+          </div>
           <p className="flex items-center gap-4">
             <span>Jakarta Barat</span>
             <span aria-hidden="true" className="h-3 w-px bg-rule" />
@@ -25,12 +39,12 @@ export default function Nav() {
       </div>
 
       <div className="wrap flex h-[72px] items-center justify-between gap-6">
-        <a href="#atas" aria-label={`${company.name}, ke atas`} className="shrink-0">
+        <a href="#atas" aria-label={`${company.legalName}, ke atas`} className="shrink-0">
           <img
             src={imgSrc(company.logo, 560)}
             srcSet={imgSrcSet(company.logo)}
             sizes="280px"
-            alt={company.name}
+            alt={company.legalName}
             width={280}
             height={70}
             className="h-10 w-auto"
@@ -51,7 +65,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <a href={cta.primaryHref} className="btn hidden sm:inline-flex">
-            {cta.primary}
+            Konsultasi via WhatsApp
           </a>
           <button
             type="button"
@@ -86,17 +100,33 @@ export default function Nav() {
           </nav>
           <a
             href={cta.primaryHref}
+            className="btn w-full justify-center"
             onClick={() => setOpen(false)}
-            className="btn mt-6 w-full sm:hidden"
           >
-            {cta.primary}
+            Konsultasi via WhatsApp
           </a>
-          <a
-            href={`tel:${company.phone.replace(/\s/g, "")}`}
-            className="mt-4 flex min-h-11 items-center text-sm text-ink-2 hover:text-ink"
-          >
-            {company.phone}
-          </a>
+          <div className="mt-4 flex min-h-11 items-center gap-4 text-sm text-ink-2">
+            <a
+              href={`https://wa.me/${company.whatsapp}`}
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-ink"
+            >
+              <WhatsappLogo size={20} />
+              WhatsApp
+            </a>
+            <a
+              href={company.instagram}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-ink"
+            >
+              <InstagramLogo size={20} />
+              Instagram
+            </a>
+          </div>
         </div>
       </div>
     </header>

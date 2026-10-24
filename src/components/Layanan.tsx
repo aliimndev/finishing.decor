@@ -6,7 +6,10 @@ export default function Layanan() {
   return (
     <section id="layanan" className="section">
       <div className="wrap">
-        <SectionHead title="Lima lini pekerjaan yang dikerjakan tim kami sendiri." />
+        <SectionHead
+          title="Layanan Jasa Finishing Rumah dan Interior"
+          body="PT Finishing Decor Jaya siap melayani kebutuhan finishing rumah, interior, dan bangunan di seluruh Indonesia."
+        />
 
         <ol className="mt-12 border-t border-rule">
           {services.map((service, i) => {
@@ -37,13 +40,13 @@ export default function Layanan() {
                   ))}
                 </ul>
 
-                {hasImage && (
+                {hasImage && service.image && (
                   <div className="col-span-12 lg:col-span-3">
                     <img
                       src={imgSrc(service.image, 900)}
                       srcSet={imgSrcSet(service.image)}
                       sizes="(min-width: 1024px) 24vw, 100vw"
-                      alt=""
+                      alt={`Pekerjaan ${service.title.toLowerCase()} oleh PT Finishing Decor Jaya`}
                       width={900}
                       height={675}
                       loading="lazy"

@@ -1,63 +1,54 @@
 /*
-  SEMUA ISI SITIS ADA DI FILE INI, dan seluruh nilainya placeholder:
-  ganti sebelum site ini dipublikasikan.
+  Data perusahaan - PT Finishing Decor Jaya
 */
 
 export const company = {
-  name: "Finishing Decor",
-  legalName: "Finishing Decor",
-  monogram: "FD",
+  name: "Finishing Decor Jaya",
+  legalName: "PT Finishing Decor Jaya",
+  monogram: "FDJ",
   logo: "/img/logo",
-  logoText: "Finishing Decor",
-  tagline: "Kontraktor finishing bangunan",
+  logoText: "PT Finishing Decor Jaya",
+  tagline: "Jasa Finishing Rumah dan Interior Profesional",
   founded: 2014,
   phone: "+62 812-9614-7894",
   phoneHref: "tel:+6281296147894",
   whatsapp: "6281296147894",
+  instagram: "https://www.instagram.com/finishing.decor?srtk=ZDNlZDc0MzIxNw==",
   email: "halo@mitrakarya.co.id",
   address:
     "Jl. Menara II No. 62, Maruya Selatan, Kembangan, Jakarta Barat 11650",
-  // mock
-  areas: ["Jakarta Selatan", "Jakarta Timur", "Bekasi", "Depok", "Tangerang"],
+  areas: ["Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi", "Jabodetabek"],
 };
 
 export const services = [
   {
-    title: "Pengecatan dan Dinding",
-    body: "Cat interior dan eksterior, plester, dan gesso. Disiapkan dan dikuas dua lapis.",
-    items: ["Cat interior 2 lapis", "Plester dan gesso", "Cat eksterior fasad"],
+    title: "Pengecatan Rumah dan Bangunan",
+    body: "Jasa pengecatan interior dan eksterior untuk hunian, ruko, kantor, dan bangunan komersial.",
+    items: ["Cat interior", "Cat eksterior", "Plester dan persiapan permukaan"],
     image: "/img/img7",
   },
   {
-    title: "Lantai dan Keramik",
-    body: "Pembongkaran lantai lama, perataan, sampai pemasangan keramik pola yang diminta.",
-    items: [
-      "Keramik 40x40 sampai 80x80",
-      "Granit dan marmer",
-      "Bongkar lantai lama",
-    ],
+    title: "Pemasangan Lantai Keramik",
+    body: "Pemasangan keramik, granit, dan marmer dengan persiapan permukaan yang tepat untuk hasil rapi dan tahan lama.",
+    items: ["Keramik dan granit", "Granit dan marmer", "Bongkar lantai lama"],
     image: "/img/img21",
   },
   {
-    title: "Plafon Gypsum",
-    body: "Rangka hollow, esting, dan pemasangan plafon gypsum untuk plafon datar atau drop.",
-    items: ["Plafon datar dan drop", "Partisi ruang", "Penggantung downlight"],
+    title: "Pemasangan Plafon Gypsum",
+    body: "Pemasangan plafon gypsum datar maupun drop, partisi, serta persiapan untuk pencahayaan downlight.",
+    items: ["Plafon datar dan drop", "Partisi gypsum", "Persiapan downlight"],
     image: "/img/koridor",
   },
   {
-    title: "Kusen dan Partisi",
-    body: "Kusen aluminium, pintu panel, dan partisi kaca untuk area kantor dan komersial.",
-    items: ["Kusen aluminium", "Pintu panel", "Partisi kaca"],
+    title: "Pemasangan Kusen Aluminium",
+    body: "Pemasangan kusen aluminium, pintu, dan partisi untuk kebutuhan hunian dan bangunan komersial.",
+    items: ["Kusen aluminium", "Pintu aluminium", "Partisi dan jendela"],
     image: "/img/kusen",
   },
   {
-    title: "Renovasi dan Bongkar",
-    body: "Bongkar struktur ringan, perbaikan plafon bocor, dan pekerjaan renovasi bertahap.",
-    items: [
-      "Bongkar struktur ringan",
-      "Perbaikan plafon bocor",
-      "Renovasi bertahap",
-    ],
+    title: "Jasa Finishing Interior",
+    body: "Penyelesaian finishing interior menyeluruh untuk memberikan tampilan rapi dan siap pakai.",
+    items: ["Finishing dinding", "Detail trim", "Pekerjaan penyelesaian"],
   },
 ];
 
@@ -272,14 +263,15 @@ export const faqs = [
 
 export const nav = [
   { label: "Layanan", href: "#layanan" },
-  { label: "Proses", href: "#proses" },
   { label: "Proyek", href: "#proyek" },
+  { label: "Proses", href: "#proses" },
   { label: "Tanya Jawab", href: "#tanya-jawab" },
+  { label: "Kontak", href: "#kontak" },
 ];
 
 export const cta = {
-  primary: "Minta Penawaran",
+  primary: "Konsultasi via WhatsApp",
   primaryHref: "#kontak",
-  secondary: "Lihat Proyek",
+  secondary: "Lihat Proyek Kami",
   secondaryHref: "#proyek",
 };

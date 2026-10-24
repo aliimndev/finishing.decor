@@ -47,12 +47,12 @@ export default function Proyek() {
                   src={imgSrc(project.image, 1600)}
                   srcSet={imgSrcSet(project.image)}
                   sizes="(min-width: 1024px) 47vw, 92vw"
-                  alt=""
+                  alt={`Proyek ${project.title} oleh PT Finishing Decor Jaya - ${project.scope}`}
                   width={1600}
                   height={1200}
                   loading="lazy"
                   decoding="async"
-                  aria-hidden="true"
+                  aria-hidden={false}
                   className={`photo-tone absolute inset-0 h-full w-full object-cover transition-opacity duration-[var(--dur-long)] ease-out motion-reduce:transition-none ${
                     i === active ? "opacity-100" : "opacity-0"
                   }`}
