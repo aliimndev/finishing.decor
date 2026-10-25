@@ -23,7 +23,7 @@ export default function Footer() {
             <p className="mt-3 text-sm leading-relaxed text-paper-2">
               Area layanan: {company.areas.join(", ")}
             </p>
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3 sm:gap-4">
               <a
                 href={`https://wa.me/${company.whatsapp}`}
                 aria-label="WhatsApp"
@@ -45,7 +45,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <nav aria-label="Navigasi footer" className="flex flex-col">
+          <nav aria-label="Navigasi footer" className="flex flex-col md:min-w-[18rem]">
             {nav.map((item) => (
               <a
                 key={item.href}
@@ -57,7 +57,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <div className="flex flex-col items-start gap-2">
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:gap-4">
             <a
               href={company.phoneHref}
               className="flex min-h-11 items-center text-sm text-paper-2 hover:text-paper"
@@ -66,14 +66,14 @@ export default function Footer() {
             </a>
             <a
               href={cta.primaryHref}
-              className="link text-paper hover:text-paper-2"
+              className="link text-paper hover:text-paper-2 sm:order-last"
             >
               {cta.primary}
             </a>
           </div>
         </div>
 
-        <p className="mt-16 select-none text-[clamp(3rem,12.5vw,10rem)] font-semibold leading-[0.86] tracking-[-0.05em] text-paper">
+        <p className="mt-16 select-none text-[clamp(2.5rem,10vw,10rem)] font-semibold leading-[0.86] tracking-[-0.05em] text-paper">
         Finishing Decor 
         </p>
 
